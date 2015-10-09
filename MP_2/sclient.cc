@@ -59,42 +59,27 @@ int main(int argc, char* argv[])
 
   // real work here
   while(1) {
-    // ask the user to input a random number
-    printf("Please input a random number = ");
+
+    // 1. ask the user to input a random number, and send to server using SSL library
     int r;
-    scanf("%d", &r);
-    printf("client...7\n");
+    printf("Please input a random number = ");
+     
+    // put your code here...
 
-    char challenge[1024];
-    sprintf(challenge, "%d", r);
-    printf("challenge is %s\n", challenge);
-    SSL_write(ssl, challenge, strlen(challenge));
 
-    // wait for the response from the server
-    char buf[1024];
-    int buf_size = 1024;
-    int bytes = SSL_read(ssl, buf, buf_size);
-    if (bytes > 0) {
-      // ...process request
-      
-      // turn this into a legitimate string
-      buf[bytes] = '\0';
-      
-      int response = atoi(buf);
-      printf("response is %d\n", response);
+    // 2. wait for the response from the server
+    int response;
+    
+    // put your code here...
 
-      // check whether the response is correct
-      if (response == r + 1) {
-	       printf("Succeed\n");
-      } else {
-	       printf("Fail\n");
-      }
+    // 3. Check if the response is correct, if your code is correct, it should print "Succeed"
+
+    if (response == r + 1) {
+      printf("Succeed\n");
     } else {
-      printf("Client out of loop. Bye!\n");
-      break;
+      printf("Fail\n");
     }
   }
-  
-  // send a string to
+
   SSL_free(ssl);
 }

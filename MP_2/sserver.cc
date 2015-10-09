@@ -56,23 +56,12 @@ int main(int argc, char* argv[])
   char buf[1024];
   int buf_size = 1024;
 
-  // ...now you can read/write
+  // real work here
   while(1) {
-    int bytes = SSL_read(ssl, buf, buf_size);
-    if (bytes > 0) {
-      // ...process request
-      
-      // turn this into a legitimate string
-      buf[bytes] = '\0';
-
-      int challenge = atoi(buf);
-      char reply[buf_size];
-      sprintf(reply, "%d", challenge + 1);
-      SSL_write(ssl, reply, strlen(reply));
-    } else {
-      printf("Server gets out of the loop. Bye!\n");
-      break;
-    }
+    
+    // read message from client, plus one, then send back to client
+    // put your code here
+    
   }
 
   client = SSL_get_fd(ssl);
